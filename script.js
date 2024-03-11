@@ -13,10 +13,21 @@ async function getQuestions() {
 
 // Function to get a random question
 async function getRandomQuestion() {
-    const questions = await getQuestions();
-    const randomIndex = Math.floor(Math.random() * questions.length);
-    return questions[randomIndex];
+    try {
+        const questions = await getQuestions();
+        console.log("All questions:", questions);
+        
+        const randomIndex = Math.floor(Math.random() * questions.length);
+        const randomQuestion = questions[randomIndex];
+        console.log("Random question:", randomQuestion);
+
+        return randomQuestion;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
+
 
 // Function to check the answer
 function checkAnswer() {
