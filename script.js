@@ -1,3 +1,5 @@
+// script.js
+
 async function getQuestions() {
     try {
         const response = await fetch('questions.csv');
@@ -28,7 +30,6 @@ async function getRandomQuestion() {
     }
 }
 
-
 // Function to check the answer
 function checkAnswer() {
     const userAnswer = document.getElementById("answer-input").value.toLowerCase();
@@ -41,7 +42,11 @@ function checkAnswer() {
     });
 }
 
-// Display initial question
-getRandomQuestion().then((initialQuestion) => {
-    document.getElementById("question").innerText = initialQuestion.question;
-});
+// Function to change the question
+function changeQuestion() {
+    getRandomQuestion().then((newQuestion) => {
+        document.getElementById("question").innerText = newQuestion.question;
+        document.getElementById("answer-input").value = ""; // Clear the answer input
+        document.getElementById("result").innerText = ""; // Clear the result
+    });
+}
