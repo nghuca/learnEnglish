@@ -1,4 +1,4 @@
-// script.js
+let isQuestionPending = false;
 
 async function getQuestions() {
     try {
@@ -15,7 +15,13 @@ async function getQuestions() {
 
 // Function to get a random question
 async function getRandomQuestion() {
+    if (isQuestionPending) {
+        // If a question is still pending, do not fetch a new one
+        return null;
+    }
+
     try {
+        isQuestionPending = true;
         const questions = await getQuestions();
         console.log("All questions:", questions);
         
@@ -27,6 +33,8 @@ async function getRandomQuestion() {
     } catch (error) {
         console.error(error);
         throw error;
+    } finally {
+        isQuestionPending = false;
     }
 }
 
@@ -34,6 +42,11 @@ async function getRandomQuestion() {
 function checkAnswer() {
     const userAnswer = document.getElementById("answer-input").value.toLowerCase();
     getRandomQuestion().then((currentQuestion) => {
+        if (currentQuestion === null) {
+            // A question is still pending, do not check the answer
+            return;
+        }
+
         if (userAnswer === currentQuestion.answer.toLowerCase()) {
             document.getElementById("result").innerText = "Correct!";
         } else {
@@ -45,6 +58,11 @@ function checkAnswer() {
 // Function to change the question
 function changeQuestion() {
     getRandomQuestion().then((newQuestion) => {
+        if (newQuestion === null) {
+            // A question is still pending, do not change the question
+            return;
+        }
+
         document.getElementById("question").innerText = newQuestion.question;
         document.getElementById("answer-input").value = ""; // Clear the answer input
         document.getElementById("result").innerText = ""; // Clear the result
