@@ -1,70 +1,73 @@
 let isQuestionPending = false;
+let currentQuestion; // Store the current question
 
-async function getQuestions() {
+async function fetchQuestions() {
     try {
         const response = await fetch('questions.csv');
         const data = await response.text();
-        // Specify that the CSV data has headers
-        const parsedData = d3.csvParse(data, d3.autoType);
-        return parsedData;
+        return d3.csvParse(data, d3.autoType);
     } catch (error) {
-        console.error(error);
+        console.error("Error fetching questions:", error);
         throw error;
     }
 }
 
-// Function to get a random question
 async function getRandomQuestion() {
     if (isQuestionPending) {
-        // If a question is still pending, do not fetch a new one
         return null;
     }
 
     try {
         isQuestionPending = true;
-        const questions = await getQuestions();
+        const questions = await fetchQuestions();
         console.log("All questions:", questions);
-        
-        const randomIndex = Math.floor(Math.random() * questions.length);
-        const randomQuestion = questions[randomIndex];
-        console.log("Random question:", randomQuestion);
 
-        return randomQuestion;
+        const randomIndex = Math.floor(Math.random() * questions.length);
+        currentQuestion = questions[randomIndex]; // Save the current question
+        console.log("Random question:", currentQuestion);
+
+        return currentQuestion;
     } catch (error) {
-        console.error(error);
+        console.error("Error getting random question:", error);
         throw error;
     } finally {
         isQuestionPending = false;
     }
 }
 
-// Function to check the answer
-function checkAnswer() {
-    const userAnswer = document.getElementById("answer-input").value.toLowerCase();
-    getRandomQuestion().then((currentQuestion) => {
-        if (currentQuestion === null) {
-            // A question is still pending, do not check the answer
-            return;
-        }
-
-        if (userAnswer === currentQuestion.answer.toLowerCase()) {
-            document.getElementById("result").innerText = "Correct!";
-        } else {
-            document.getElementById("result").innerText = `Wrong! The correct answer is: "${currentQuestion.answer}"`;
-        }
-    });
+function setResult(text) {
+    document.getElementById("result").innerText = text;
 }
 
-// Function to change the question
 function changeQuestion() {
     getRandomQuestion().then((newQuestion) => {
-        if (newQuestion === null) {
-            // A question is still pending, do not change the question
+        if (!newQuestion) {
             return;
         }
 
         document.getElementById("question").innerText = newQuestion.question;
-        document.getElementById("answer-input").value = ""; // Clear the answer input
-        document.getElementById("result").innerText = ""; // Clear the result
+        document.getElementById("answer-input").value = "";
+        document.getElementById("result").innerText = "";
     });
 }
+
+async function checkAnswer() {
+    const userAnswer = document.getElementById("answer-input").value.toLowerCase();
+    
+    if (!currentQuestion) {
+        return;
+    }
+
+    const resultElement = document.getElementById("result");
+
+    if (userAnswer === currentQuestion.answer.toLowerCase()) {
+        changeQuestion();
+        setResult("Correct!");
+    } else {
+        setResult(`Wrong! The correct answer is: "${currentQuestion.answer}"`);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    changeQuestion();
+});
