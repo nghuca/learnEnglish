@@ -2,14 +2,14 @@ async function getQuestions() {
     try {
         const response = await fetch('questions.csv');
         const data = await response.text();
-        const parsedData = d3.csvParse(data);
+        // Specify that the CSV data has headers
+        const parsedData = d3.csvParse(data, d3.autoType);
         return parsedData;
     } catch (error) {
         console.error(error);
-        throw error; // Rethrow the error or return an indication of failure
+        throw error;
     }
 }
-
 
 // Function to get a random question
 async function getRandomQuestion() {
