@@ -1,11 +1,10 @@
 let isQuestionPending = false;
-let currentQuestion; // Store the current question
-
+let currentQuestion;
 async function fetchQuestions() {
     try {
-        const response = await fetch('questions.json'); // Change the file extension to .json
-        const data = await response.json(); // Parse the JSON data
-        return data; // Return the parsed JSON data
+        const response = await fetch('questions.json');
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error("Error fetching questions:", error);
         throw error;
@@ -68,10 +67,10 @@ async function checkAnswer() {
     }
 }
 
-document.getElementById("answer-input").addEventListener("keypress", function(event) {
+document.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
-        event.preventDefault(); // Prevent the default form submission
-        checkAnswer(); // Call the checkAnswer function when Enter is pressed
+        event.preventDefault();
+        checkAnswer();
     }
 });
 

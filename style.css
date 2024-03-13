@@ -1,10 +1,9 @@
-/* styles.css */
 
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Make sure the body takes at least the full viewport height */
-    margin: 0; /* Remove default margin */
+    min-height: 100vh;
+    margin: 0;
     background-color: #f8f9fa;
 }
 
@@ -14,7 +13,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-top: 50px;
-    flex: 1; /* Allow the container to grow and take remaining space */
+    flex: 1;
 }
 
 #result {
@@ -22,18 +21,17 @@ body {
 }
 
 footer {
-    margin-top: auto; /* Push the footer to the bottom */
-    padding: 20px 0; /* Add some space around the footer content */
-    background-color: #343a40; /* Set a background color for the footer */
-    color: #ffffff; /* Set text color for the footer */
+    margin-top: auto; 
+    padding: 20px 0; 
+    background-color: #343a40;
+    color: #ffffff;
     position: relative;
 }
 
 .button-container {
     display: flex;
     justify-content: center;
-    position: fixed; /* Cố định vị trí */
-    bottom: 20px; /* Khoảng cách từ phía dưới của trang */
-    left: 50%; /* Đặt trung tâm theo chiều ngang */
-    transform: translateX(-50%); /* Dịch chuyển ngang để căn giữa */
-}
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
