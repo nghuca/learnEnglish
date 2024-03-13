@@ -3,9 +3,9 @@ let currentQuestion; // Store the current question
 
 async function fetchQuestions() {
     try {
-        const response = await fetch('questions.csv');
-        const data = await response.text();
-        return d3.csvParse(data, d3.autoType);
+        const response = await fetch('questions.json'); // Change the file extension to .json
+        const data = await response.json(); // Parse the JSON data
+        return data; // Return the parsed JSON data
     } catch (error) {
         console.error("Error fetching questions:", error);
         throw error;
@@ -67,6 +67,13 @@ async function checkAnswer() {
         setResult(`Wrong! The correct answer is: "${currentQuestion.answer}"`);
     }
 }
+
+document.getElementById("answer-input").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Prevent the default form submission
+        checkAnswer(); // Call the checkAnswer function when Enter is pressed
+    }
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     changeQuestion();

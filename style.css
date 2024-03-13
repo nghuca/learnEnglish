@@ -26,4 +26,14 @@ footer {
     padding: 20px 0; /* Add some space around the footer content */
     background-color: #343a40; /* Set a background color for the footer */
     color: #ffffff; /* Set text color for the footer */
+    position: relative;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    position: fixed; /* Cố định vị trí */
+    bottom: 20px; /* Khoảng cách từ phía dưới của trang */
+    left: 50%; /* Đặt trung tâm theo chiều ngang */
+    transform: translateX(-50%); /* Dịch chuyển ngang để căn giữa */
 }
