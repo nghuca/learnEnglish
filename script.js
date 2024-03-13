@@ -2,7 +2,7 @@ let isQuestionPending = false;
 let currentQuestion;
 async function fetchQuestions() {
     try {
-        const response = await fetch('questions.json');
+        const response = await fetch('questions_answers.json');
         const data = await response.json();
         return data;
     } catch (error) {
