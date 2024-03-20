@@ -1,10 +1,10 @@
 let isQuestionPending = false;
 let currentQuestion;
-async function fetchQuestions() {
+async function fetchQuestions_answers() {
     try {
-        const response = await fetch('questions_answers.json');
-        const data = await response.json();
-        return data;
+        const response = await fetch('questions_answers.csv');
+        const data = await response.text();
+        return d3.csvParse(data, d3.autoType);
     } catch (error) {
         console.error("Error fetching questions:", error);
         throw error;
@@ -18,16 +18,15 @@ async function getRandomQuestion() {
 
     try {
         isQuestionPending = true;
-        const questions = await fetchQuestions();
-        console.log("All questions:", questions);
+        const questions = await fetchQuestions_answers();
 
         const randomIndex = Math.floor(Math.random() * questions.length);
         currentQuestion = questions[randomIndex]; // Save the current question
-        console.log("Random question:", currentQuestion);
+        // console.log("Random question:", currentQuestion);
 
         return currentQuestion;
     } catch (error) {
-        console.error("Error getting random question:", error);
+        //  .error("Error getting random question:", error);
         throw error;
     } finally {
         isQuestionPending = false;
