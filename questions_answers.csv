@@ -1,16 +1,2 @@
-id,question,answer
-1,"She graduated _____ 2015. (Select in, on, at to fill in the blanks to complete the sentence)",in
-2,"We will have a meeting _____ the morning. (Select in, on, at to fill in the blanks to complete the sentence)",in
-3,"The concert is scheduled _____ July. (Select in, on, at to fill in the blanks to complete the sentence)",in
-4,"They got married _____ the summer. (Select in, on, at to fill in the blanks to complete the sentence)",in
-5,"The new semester starts _____ January. (Select in, on, at to fill in the blanks to complete the sentence)",in
-6,"The party is _____ Friday. (Select in, on, at to fill in the blanks to complete the sentence)",on
-7,"They will arrive _____ 3:00 PM. (Select in, on, at to fill in the blanks to complete the sentence)",on
-8,"We met _____ the restaurant. (Select in, on, at to fill in the blanks to complete the sentence)",on
-9,"The movie starts _____ 7:30 PM. (Select in, on, at to fill in the blanks to complete the sentence)",on
-10,"They have a reservation _____ the hotel. (Select in, on, at to fill in the blanks to complete the sentence)",on
-11,"The conference is scheduled _____ Monday. (Select in, on, at to fill in the blanks to complete the sentence)",at
-12,"The deadline for submissions is _____ the 15th. (Select in, on, at to fill in the blanks to complete the sentence)",at
-13,"We celebrate Independence Day _____ July 4th. (Select in, on, at to fill in the blanks to complete the sentence)",at
-14,"The presentation is scheduled _____ the 10th floor. (Select in, on, at to fill in the blanks to complete the sentence)",at
-15,"She has an appointment _____ Wednesday. (Select in, on, at to fill in the blanks to complete the sentence)",at
+id,question,answer1,answer2
+1,"English_______one of the most popular languages nowaday.  a)was   b)is    c)is    being    d)am ",c,is

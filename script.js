@@ -22,7 +22,7 @@ async function getRandomQuestion() {
 
         const randomIndex = Math.floor(Math.random() * questions.length);
         currentQuestion = questions[randomIndex]; // Save the current question
-        // console.log("Random question:", currentQuestion);
+        console.log("Random question:", currentQuestion);
 
         return currentQuestion;
     } catch (error) {
@@ -34,7 +34,8 @@ async function getRandomQuestion() {
 }
 
 function setResult(text) {
-    document.getElementById("result").innerText = text;
+    
+    document.getElementById("result").textContent = text;
 }
 
 function changeQuestion() {
@@ -43,7 +44,7 @@ function changeQuestion() {
             return;
         }
 
-        document.getElementById("question").innerText = newQuestion.question;
+        document.getElementById("question").textContent = newQuestion.question;
         document.getElementById("answer-input").value = "";
         document.getElementById("result").innerText = "";
     });
@@ -58,11 +59,12 @@ async function checkAnswer() {
 
     const resultElement = document.getElementById("result");
 
-    if (userAnswer === currentQuestion.answer.toLowerCase()) {
+    if (userAnswer === currentQuestion.answer1.toLowerCase() ||
+        userAnswer === currentQuestion.answer2.toLowerCase() ) {
         changeQuestion();
         setResult("Correct!");
     } else {
-        setResult(`Wrong! The correct answer is: "${currentQuestion.answer}"`);
+        setResult(`Wrong! The correct answer is: ${currentQuestion.answer1} or "${currentQuestion.answer2}"`);
     }
 }
 
