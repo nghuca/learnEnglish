@@ -45,6 +45,7 @@ function changeQuestion() {
         }
 
         document.getElementById("question").textContent = newQuestion.question;
+        document.getElementById("requirement").textContent = newQuestion.requirement;
         document.getElementById("answer-input").value = "";
         document.getElementById("result").innerText = "";
     });
