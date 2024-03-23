@@ -1,6 +1,6 @@
 let isQuestionPending = false;
 let currentQuestion;
-let score = 0; // Initialize score count
+let score = 0; 
 
 async function fetchQuestions_answers() {
     try {
@@ -66,8 +66,8 @@ async function checkAnswer() {
 
     if (userAnswer === currentQuestion.answer1.toLowerCase() ||
         userAnswer === currentQuestion.answer2.toLowerCase() ) {
-        score++; // Increment score for correct answer
-        setScore(); // Update score display
+        score++; 
+        setScore();
         changeQuestion();
         setResult("Correct!");
     } else {
@@ -86,5 +86,5 @@ document.addEventListener("keypress", function(event) {
 
 document.addEventListener('DOMContentLoaded', function() {
     changeQuestion();
-    setScore(); // Initialize score display
+    setScore();
 });
