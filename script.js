@@ -24,7 +24,7 @@ async function getRandomQuestion() {
 
         const randomIndex = Math.floor(Math.random() * questions.length);
         currentQuestion = questions[randomIndex]; // Save the current question
-        console.log("Random question:", currentQuestion);
+        // console.log("Random question:", currentQuestion);
 
         return currentQuestion;
     } catch (error) {
